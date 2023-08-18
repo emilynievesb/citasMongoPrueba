@@ -1,0 +1,268 @@
+use("db_citas_campus");
+
+db.createCollection("genero", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["_id", "gen_nombre", "gen_abreviatura"],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "Id del género",
+        },
+        gen_nombre: {
+          bsonType: "string",
+          description: "Nombre del género",
+        },
+        gen_abreviatura: {
+          bsonType: "string",
+          description: "Abreviatura del género",
+        },
+      },
+    },
+  },
+});
+
+db.createCollection("tipo_documento", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["_id", "tipodoc_nombre", "tipodoc_abreviatura"],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "Id del tipo de documento",
+        },
+        tipodoc_nombre: {
+          bsonType: "string",
+          description: "Nombre del tipo de documento",
+        },
+        tipodoc_abreviatura: {
+          bsonType: "string",
+          description: "Abreviatura del tipo de documento",
+        },
+      },
+    },
+  },
+});
+
+db.createCollection("usuario", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: [
+        "_id",
+        "usu_nombre",
+        "usu_segdo_nombre",
+        "usu_primer_apellido",
+        "usu_segdo_apellido",
+        "usu_telefono",
+        "usu_direccion",
+        "usu_email",
+        "usu_tipodoc",
+        "usu_genero",
+        "usu_acudiente",
+      ],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "Id del usuario",
+        },
+        usu_nombre: {
+          bsonType: "string",
+          description: "Nombre del usuario",
+        },
+        usu_segdo_nombre: {
+          bsonType: "string",
+          description: "Segundo nombre del usuario",
+        },
+        usu_primer_apellido: {
+          bsonType: "string",
+          description: "Primer apellido del usuario",
+        },
+        usu_telefono: {
+          bsonType: "double",
+          description: "Telefono del usuario",
+        },
+        usu_direccion: {
+          bsonType: "string",
+          description: "Direccion del usuario",
+        },
+        usu_email: {
+          bsonType: "string",
+          description: "Email del usuario",
+        },
+        usu_tipodoc: {
+          bsonType: "int",
+          description: "Tipo de documento del usuario",
+        },
+        usu_genero: {
+          bsonType: "int",
+          description: "Genero del usuario",
+        },
+        usu_acudiente: {
+          bsonType: "int",
+          description: "Acudiente del usuario",
+        },
+      },
+    },
+  },
+});
+
+db.createCollection("cita", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: [
+        "_id",
+        "cit_fecha",
+        "cit_estadoCita",
+        "cit_medico",
+        "cit_datosUsuario",
+      ],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "Id de la cita",
+        },
+        cit_fecha: {
+          bsonType: "date",
+          description: "Fecha de la cita",
+        },
+        cit_estadoCita: {
+          bsonType: "int",
+          description: "Estado de la cita",
+        },
+        cit_medico: {
+          bsonType: "int",
+          description: "Medico de la cita",
+        },
+        cit_datosUsuario: {
+          bsonType: "int",
+          description: "Usuario de la cita",
+        },
+      },
+    },
+  },
+});
+
+db.createCollection("estado_cita", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["_id", "estadocita_nombre"],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "Id del estado cita",
+        },
+        estadocita_nombre: {
+          bsonType: "string",
+          description: "Nombre del estado cita",
+        },
+      },
+    },
+  },
+});
+
+db.createCollection("medico", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: [
+        "_id",
+        "med_nroMatriculaProfesional",
+        "med_nombreCompleto",
+        "med_consultorio",
+        "med_especialidad",
+      ],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "Id del médico",
+        },
+        med_nroMatriculaProfesional: {
+          bsonType: "double",
+          description: "Número de matricula profesional del médico",
+        },
+        mec_nombreCompleto: {
+          bsonType: "string",
+          description: "Nombre del médico",
+        },
+        med_consultorio: {
+          bsonType: "string",
+          description: "Consultorio del médico",
+        },
+        med_especialidad: {
+          bsonType: "string",
+          description: "Especialidad del médico",
+        },
+      },
+    },
+  },
+});
+
+db.createCollection("especialidad", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["_id", "esp_nombre"],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "Id de la especialidad",
+        },
+        esp_nombre: {
+          bsonType: "string",
+          description: "Nombre de la especialidad",
+        },
+      },
+    },
+  },
+});
+
+db.createCollection("consultorio", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["_id", "cons_nombre"],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "Id del consultorio",
+        },
+        cons_nombre: {
+          bsonType: "string",
+          description: "Nombre del consultorio",
+        },
+      },
+    },
+  },
+});
+
+db.createCollection("acudiente", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["_id", "acu_nombreCompleto", "acu_telefono", "acu_direccion"],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "Id de la cita",
+        },
+        acu_nombreCompleto: {
+          bsonType: "string",
+          description: "Nombre completo del acudiente",
+        },
+        acu_telefono: {
+          bsonType: "double",
+          description: "Telefono del acudiente",
+        },
+        acu_direccion: {
+          bsonType: "string",
+          description: "Dirección del acudiente",
+        },
+      },
+    },
+  },
+});
